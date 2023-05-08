@@ -299,6 +299,7 @@ def interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, delta_x, delta_y):
     wy = w_ld * (1-delta_x) * (1-delta_y) + w_lg * (1-delta_x) * delta_y + w_pd * delta_x * (1-delta_y) + w_pg * delta_x * delta_y
     return wy
 
+druga wersja perloina
 
 
 # Interpolacja 2d
