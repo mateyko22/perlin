@@ -320,3 +320,5 @@ def interpolacja_2d_cala_vperm_nlin(x, y, tab_wart, tab_perm):
     wy = interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, x_delta, y_delta)
     return wy
 
+trzecia wersja perlina ajej
+llal
