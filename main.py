@@ -299,8 +299,6 @@ def interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, delta_x, delta_y):
     wy = w_ld * (1-delta_x) * (1-delta_y) + w_lg * (1-delta_x) * delta_y + w_pd * delta_x * (1-delta_y) + w_pg * delta_x * delta_y
     return wy
 
-druga wersja perloina
-
 
 # Interpolacja 2d
 def interpolacja_2d_cala_vperm_nlin(x, y, tab_wart, tab_perm):
@@ -320,6 +318,3 @@ def interpolacja_2d_cala_vperm_nlin(x, y, tab_wart, tab_perm):
     w_pg = tab_wart[i_pg]
     wy = interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, x_delta, y_delta)
     return wy
-
-trzecia wersja perlina ajej
-llal
