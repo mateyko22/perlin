@@ -266,28 +266,12 @@ def funkcja_skrotu_uniw_perm_v3(tab_skl, tab_perm):
     return wynik
 
 
-tab6 = np.ones([8, 12])
 
-for x in range(-1, 10):
-    for y in range(0,7):
-        tab6[y, x] = funkcja_skrotu_uniw_perm_v3([x, y], tab_perm)
-
-
-
-
-
-# hf = plt.figure()
-# ha = hf.add_subplot(111, projection='3d')
-#
-# X, Y = np.meshgrid(range(12), range(8))  # `plot_surface` expects `x` and `y` data to be 2D
-# ha.plot_surface(X, Y, tab6)
-#
-# plt.show()
 
 
 
 # Interpolacja 2d, liniowy rdzeń
-def interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, delta_x, delta_y):
+def interpolacja_2d_rdzen_vlin(w_ld, w_lg, w_pd, w_pg, delta_x, delta_y):
     wy = w_ld * (1-delta_x) * (1-delta_y) + w_lg * (1-delta_x) * delta_y + w_pd * delta_x * (1-delta_y) + w_pg * delta_x * delta_y
     return wy
 
@@ -318,3 +302,36 @@ def interpolacja_2d_cala_vperm_nlin(x, y, tab_wart, tab_perm):
     w_pg = tab_wart[i_pg]
     wy = interpolacja_2d_rdzen_vnlin(w_ld, w_lg, w_pd, w_pg, x_delta, y_delta)
     return wy
+
+
+def interpolacja_2d_cala_vperm_lin(x, y, tab_wart, tab_perm):
+    x_l = int(x)
+    x_p = x_l + 1
+    x_delta = x - x_l
+    y_d = int(y)
+    y_g = y_d + 1
+    y_delta = y - y_d
+    i_ld = funkcja_skrotu_uniw_perm_v3([x_l, y_d], tab_perm)
+    i_lg = funkcja_skrotu_uniw_perm_v3([x_l, y_g], tab_perm)
+    i_pd = funkcja_skrotu_uniw_perm_v3([x_p, y_d], tab_perm)
+    i_pg = funkcja_skrotu_uniw_perm_v3([x_p, y_g], tab_perm)
+    w_ld = tab_wart[i_ld]
+    w_lg = tab_wart[i_lg]
+    w_pd = tab_wart[i_pd]
+    w_pg = tab_wart[i_pg]
+    wy = interpolacja_2d_rdzen_vlin(w_ld, w_lg, w_pd, w_pg, x_delta, y_delta)
+    return wy
+
+tab6 = np.ones([8, 12])
+
+for x in range(-1, 10):
+    for y in range(0,7):
+        tab6[y, x] = interpolacja
+
+hf = plt.figure()
+ha = hf.add_subplot(111, projection='3d')
+
+X, Y = np.meshgrid(range(12), range(8))  # `plot_surface` expects `x` and `y` data to be 2D
+ha.plot_surface(X, Y, tab6)
+
+plt.show()
